@@ -1,24 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <title>Signup</title>
-    </head>
+{% extends "base.html" %}
 
-        <body>
-            <h1>Signup</h1>
-            <form  method="POST","GET">
-                <label for="username">Username</label>
-                <input id="username" type="text" name="username"/><br>
-                <label for="user_password">Password</label>
-                <input id="user_password" type="password" name="user_pwd"/><br>
-                <label id="vrfy_password">Verify Password</label>
-                <input id="vrfy_password" type="password" name="vrfy_pwd"/><br>
-                <label for="user_email">Email(optional)</label>
-                <input id="user_email" type="text" name="email"/><br>
-                <input type= "submit" value="Submit"/>
-            </form>
+{% block content %}
 
-            <hr />
+
+
+    <h1>Signup</h1>
+    {%if form|length>=0%}
+        <form  method="POST">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username"/><br>
+            
+            <label for="user_password">Password</label>
+            <input id="user_password" type="password" name="user_pwd"/><br>
+            <label id="vrfy_password">Verify Password</label>
+            <input id="vrfy_password" type="password" name="vrfy_pwd"/><br>
+            <label for="user_email">Email(optional)</label>
+            <input id="user_email" type="text" name="email"/><br>
+            <input type= "submit" value="Submit"/>
+        </form>
+            {% endif %}
+            {% endblock %}
+        <hr />
 
             {%if form|length==0%}
             <p>Please enter a valid username</p>
@@ -28,5 +30,4 @@
 
             {% endif %}
 
-        </body>
-</html>
+  
