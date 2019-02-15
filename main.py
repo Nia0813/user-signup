@@ -57,11 +57,9 @@ def validation_reqs():
     error_user_pwd = ""
     error_vrfy_pwd = ""
     error_email = ""
-    error_char_len=""
-    error_char_len1=""
-    error_char_len2=""
-    error_symbol=""
-    error_emptyspace=""
+    username_stay=""
+    email_stay=""
+    
     
 
     
@@ -71,11 +69,13 @@ def validation_reqs():
     else:
         username_len = len(username)
         if username_len < 3 or username_len > 20:
-            error_char_len= "Username must contain between 3 and 20 characters"
+            username_stay=username
+            error_username= "Username must contain between 3 and 20 characters"
             
         else:
-            if not no_space(username): 
-               error_emptyspace= "Username can not contain spaces"                                          
+            if not no_space(username):
+               username_stay=username
+               error_username= "Username can not contain spaces"                                          
                 
 
     if not isnt_empty(user_pwd):
@@ -83,11 +83,11 @@ def validation_reqs():
     else:
         user_pwd_len= len(user_pwd)
         if user_pwd_len < 3 or user_pwd_len > 20:
-            error_char_len1= "Password must contain between 3 and 20 characters"
+            error_user_pwd= "Password must contain between 3 and 20 characters"
             
         else:
             if not no_space(user_pwd): 
-                error_emptyspace="Password can not contain spaces"                
+                error_user_pwd="Password can not contain spaces"                
 
    
     if vrfy_pwd != user_pwd:
@@ -103,22 +103,24 @@ def validation_reqs():
         pass
     else:
         if email_len < 3 or email_len > 20:
-            error_char_len2= "Email must contain between 3 and 20 characters"
+            email_stay=email
+            error_email= "Email must contain between 3 and 20 characters"
         else:
             if not no_space(email): 
-                error_emptyspace="Email can not contain spaces"
+                email_stay=email
+                error_email="Email can not contain spaces"
             else: 
                 if email_val == False:
-                    error_symbol = "Email must contain one @ and one ."
+                    email_stay=email
+                    error_email = "Email must contain one @ and one ."
         
 
 
     if not error_username and not error_user_pwd and not error_vrfy_pwd and not error_email:
         return render_template("welcome_page.html", username=username)
     else:
-        return render_template ("user_name.html", username= username, email=email,user_pwd=user_pwd, vrfy_pwd=vrfy_pwd,
-        error_username=error_username, error_user_pwd=error_user_pwd, error_vrfy_pwd=error_vrfy_pwd, error_email=error_email,
-        error_emptyspace=error_emptyspace, error_char_len=error_char_len,error_char_len1=error_char_len1,error_char_len2=error_char_len2,error_symbol=error_symbol)
+        return render_template ("user_name.html", username= username,email=email,user_pwd=user_pwd, vrfy_pwd=vrfy_pwd,
+        error_username=error_username, error_user_pwd=error_user_pwd, error_vrfy_pwd=error_vrfy_pwd, error_email=error_email, username_stay=username_stay, email_stay=email_stay)
         
 app.route("/welcome")
 def welcome():
