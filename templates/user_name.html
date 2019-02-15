@@ -8,14 +8,14 @@
     {%if form|length>=0%}
         <form  method="POST">
             <label for="username">Username</label>
-            <input id="username" type="text" name="username"/><br>
+            <input id="username" type="text" name="username" /> {{error_username}} {{error_char_len}} {{error_emptyspace}}<br>
             
             <label for="user_password">Password</label>
-            <input id="user_password" type="password" name="user_pwd"/><br>
+            <input id="user_password" type="password" name="user_pwd"/>{{error_user_pwd}} {{error_char_len1}} {{error_emptyspace}}<br>
             <label id="vrfy_password">Verify Password</label>
-            <input id="vrfy_password" type="password" name="vrfy_pwd"/><br>
+            <input id="vrfy_password" type="password" name="vrfy_pwd"/>{{error_vrfy_pwd}}<br>
             <label for="user_email">Email(optional)</label>
-            <input id="user_email" type="text" name="email"/><br>
+            <input id="user_email" type="text" name="email"/>{{error_email}} {{error_char_len2}} {{error_emptyspace}}<br>
             <input type= "submit" value="Submit"/>
         </form>
             {% endif %}
